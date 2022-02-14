@@ -1,0 +1,21 @@
+version: "3"
+services:
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /Users/sergey.kolomiychuk/Desktop/docker:/home/jovyan/
+    ports:
+      - "10005:8888"
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "10006:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
